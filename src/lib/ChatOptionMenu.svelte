@@ -162,6 +162,11 @@
     if (!chatId) return
     const chat = getChat(chatId)
     if (!chat) return
+     // Disable sandbox for prank profile
+    if (chat.settings && chat.settings.profile === 'visualPrankster') {
+      errorNotice('Sandbox mode is disabled for this profile.')
+      return
+    }
     chat.settings.sandboxMode = !chat.settings.sandboxMode
     saveChatStore()
     $checkStateChange++

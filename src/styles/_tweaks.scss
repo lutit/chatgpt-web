@@ -448,3 +448,49 @@ html.tweak-spotlightActiveMessage .chat-message.message:hover {
   transform: translateY(-1px);
 }
 
+html.tweak-blackoutOverlay::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 50% 30%, rgba(15, 23, 42, 0.2), rgba(0, 0, 0, 0.98));
+  z-index: 80;
+  pointer-events: none;
+}
+
+@keyframes snow-fall {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(10px);
+    opacity: 0.1;
+  }
+}
+
+html.tweak-snowOverlay #app::before {
+  content: '❆ ❅ ❄ ❆ ❅ ❄';
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  pointer-events: none;
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 2.8rem;
+  text-align: center;
+  animation: snow-fall 8s linear infinite alternate;
+}
+
+html.tweak-asciiArtBackground #app::before {
+  content: '01 10 01 10 01 10 01 10';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  color: rgba(148, 163, 184, 0.13);
+  font-family: monospace;
+  font-size: 0.7rem;
+  white-space: pre;
+}

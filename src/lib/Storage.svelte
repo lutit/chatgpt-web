@@ -118,6 +118,9 @@
       chat.settings = {} as ChatSettings
     }
     updateProfile(chat.settings, false)
+    if (chat.settings.profile === 'visualPrankster') {
+      chat.settings.sandboxMode = false
+    }
     // make sure old chat messages have UUID
     chat.messages.forEach((m) => {
       m.uuid = m.uuid || uuidv4()

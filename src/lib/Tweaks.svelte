@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
   import { persisted } from 'svelte-local-storage-store'
   import { derived, writable } from 'svelte/store'
-  import type { TweaksState } from './Types.svelte'
+  import type { TweaksState, Message } from './Types.svelte'
 
   const defaultTweaks: TweaksState = {
     compactMessages: false,
@@ -60,7 +60,8 @@
     asciiArtBackground: false,
     snowOverlay: false,
     spotlightActiveMessage: false,
-    discoMode: false
+    discoMode: false,
+    blackoutOverlay: false
   }
 
   export const tweaksStorage = persisted<TweaksState>('tweaks', defaultTweaks)
@@ -90,5 +91,151 @@
     appliedClasses = nextApplied
     return $tweaks
   })
-</script>
 
+  type EffectId =
+    | 'blackout'
+    | 'disco'
+    | 'matrix'
+    | 'rainbowUser'
+    | 'rainbowAssistant'
+    | 'spotlight'
+    | 'snow'
+    | 'tinyChat'
+    | 'bigChat'
+    | 'calm'
+
+  const effectDefaults: Record<EffectId, number> = {
+    blackout: 30000,
+    disco: 30000,
+    matrix: 25000,
+    rainbowUser: 25000,
+    rainbowAssistant: 25000,
+    spotlight: 20000,
+    snow: 25000,
+    tinyChat: 30000,
+    bigChat: 30000,
+    calm: 1
+  }
+
+  const MAX_EFFECT_DURATION_MS = 60000
+
+  const clampDuration = (ms:number|undefined, id:EffectId):number => {
+    const base = effectDefaults[id] || 0
+    if (!ms || Number.isNaN(ms)) return base
+    return Math.min(Math.max(ms, 1000), MAX_EFFECT_DURATION_MS)
+  }
+
+  const applyTweaks = (patch: Partial<TweaksState>) => {
+    tweaksStorage.update((state) => ({
+      ...state,
+      ...patch
+    }))
+  }
+
+  const scheduleReset = (keys: (keyof TweaksState)[], durationMs:number) => {
+    if (typeof window === 'undefined' || !durationMs) return
+    window.setTimeout(() => {
+      tweaksStorage.update((state) => {
+        const next = { ...state }
+        keys.forEach((key) => {
+          next[key] = false as any
+        })
+        return next
+      })
+    }, durationMs)
+  }
+
+  export const triggerEffect = (id:EffectId, durationMs?:number) => {
+    const ms = clampDuration(durationMs, id)
+    switch (id) {
+      case 'blackout':
+        applyTweaks({ blackoutOverlay: true })
+        scheduleReset(['blackoutOverlay'], ms)
+        break
+      case 'disco':
+        applyTweaks({ discoMode: true })
+        scheduleReset(['discoMode'], ms)
+        break
+      case 'matrix':
+        applyTweaks({ matrixTheme: true })
+        scheduleReset(['matrixTheme'], ms)
+        break
+      case 'rainbowUser':
+        applyTweaks({ rainbowUserMessages: true })
+        scheduleReset(['rainbowUserMessages'], ms)
+        break
+      case 'rainbowAssistant':
+        applyTweaks({ rainbowAssistantMessages: true })
+        scheduleReset(['rainbowAssistantMessages'], ms)
+        break
+      case 'spotlight':
+        applyTweaks({ spotlightActiveMessage: true })
+        scheduleReset(['spotlightActiveMessage'], ms)
+        break
+      case 'snow':
+        applyTweaks({ snowOverlay: true })
+        scheduleReset(['snowOverlay'], ms)
+        break
+      case 'tinyChat':
+        applyTweaks({ superCompactMessages: true })
+        scheduleReset(['superCompactMessages'], ms)
+        break
+      case 'bigChat':
+        applyTweaks({ extraWideMessages: true })
+        scheduleReset(['extraWideMessages'], ms)
+        break
+      case 'calm':
+        applyTweaks({
+          discoMode: false,
+          matrixTheme: false,
+          rainbowUserMessages: false,
+          rainbowAssistantMessages: false,
+          spotlightActiveMessage: false,
+          snowOverlay: false,
+          blackoutOverlay: false
+        })
+        break
+    }
+  }
+
+  type ParsedEffect = {
+    id: EffectId;
+    durationMs?: number;
+  }
+
+  const parsePrankEffects = (content:string): ParsedEffect[] => {
+    const results: ParsedEffect[] = []
+    if (!content) return results
+    const regex = /\[\[PRANK:([a-zA-Z0-9_-]+)(?::(\d+))?]]/g
+    let match
+    while ((match = regex.exec(content)) !== null) {
+      const rawId = (match[1] || '').trim().toLowerCase()
+      const sec = match[2] ? parseInt(match[2], 10) : undefined
+      let id: EffectId | undefined
+      switch (rawId) {
+        case 'blackout': id = 'blackout'; break
+        case 'disco': id = 'disco'; break
+        case 'matrix': id = 'matrix'; break
+        case 'rainbowuser': id = 'rainbowUser'; break
+        case 'rainbowassistant': id = 'rainbowAssistant'; break
+        case 'spotlight': id = 'spotlight'; break
+        case 'snow': id = 'snow'; break
+        case 'tinychat': id = 'tinyChat'; break
+        case 'bigchat': id = 'bigChat'; break
+        case 'calm': id = 'calm'; break
+        default: id = undefined
+      }
+      if (!id) continue
+      const ms = sec ? sec * 1000 : undefined
+      results.push({ id, durationMs: ms })
+    }
+    return results
+  }
+
+  export const handlePrankEffectsForMessage = (profileKey:string|undefined, message:Message|undefined) => {
+    if (!message || message.role !== 'assistant') return
+    if (profileKey !== 'visualPrankster') return
+    const effects = parsePrankEffects(message.content || '')
+    effects.forEach((e) => triggerEffect(e.id, e.durationMs))
+  }
+</script>

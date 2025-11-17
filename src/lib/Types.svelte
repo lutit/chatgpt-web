@@ -231,6 +231,7 @@ export type TweaksState = {
     snowOverlay: boolean;
     spotlightActiveMessage: boolean;
     discoMode: boolean;
+    blackoutOverlay: boolean;
   };
 
   type SettingNumber = {

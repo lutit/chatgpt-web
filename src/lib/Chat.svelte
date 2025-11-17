@@ -41,6 +41,7 @@
   import PromptInput from './PromptInput.svelte'
   import { ChatRequest } from './ChatRequest.svelte'
   import { getModelDetail } from './Models.svelte'
+  import { handlePrankEffectsForMessage } from './Tweaks.svelte'
 
   export let params = { chatId: '' }
   const chatId: number = parseInt(params.chatId)
@@ -274,6 +275,7 @@
       await response.promiseToFinish()
       const message = response.getMessages()[0]
       if (message) {
+        handlePrankEffectsForMessage(chatSettings?.profile, message)
         ttsStart(message.content, recorded)
       }
     } catch (e) {
