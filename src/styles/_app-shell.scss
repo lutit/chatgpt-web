@@ -1,0 +1,72 @@
+/* ==========================================================================
+   App shell layout & global utilities
+   ========================================================================== */
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 100vh;
+}
+
+select option.is-default {
+  background-color: #0842e058;
+}
+
+.is-disabled {
+  pointer-events: none;
+  cursor: default;
+  opacity: .50;
+}
+
+.rotate {
+  animation: rotating 10s linear infinite;
+}
+
+.greyscale {
+  filter: grayscale(100%);
+}
+
+.user-message {
+  max-width: 90%;
+  margin-right: 0;
+  margin-left: auto;
+  width: fit-content;
+}
+
+.assistant-message {
+  max-width: 90%;
+  width: fit-content;
+}
+
+/* Swap the border on user messages to the other side */
+.user-message>.message-body {
+  border-width: 0 4px 0 0 !important;
+}
+
+/* Show the edit button on hover of the chat name */
+.chat-header:hover .editbutton {
+  display: inline !important;
+  text-decoration: none !important;
+}
+
+/* Style the chat input */
+.chat-input {
+  overflow-y: hidden;
+  resize: vertical;
+}
+
+// $footer-padding: 1.5rem 1.5rem;
+// $fullhd: 2000px;
+// $modal-content-width: 1000px;
+

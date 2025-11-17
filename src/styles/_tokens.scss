@@ -1,0 +1,107 @@
+/* ==========================================================================
+   Global design tokens & layout variables
+   ========================================================================== */
+
+html {
+  /* Scrollbar */
+  /* TODO: Update these to use bulma's scss variables, not css vars. */
+  --scrollbarBG: transparent;
+  --thumbBG: hsl(0, 0%, 60%); /* scollbar color light */
+  /* Back-ground */
+  --BgColorDark: hsl(228, 10%, 10%);
+  --BgColorLight: hsl(0, 0%, 100%);
+  // --BgColorSidebarDark: rgb(28, 30, 36);
+  --BgColorSidebarDark: rgb(16, 17, 22);
+  --BgColorSidebarLight: hsla(0, 0%, 93%, 0.354);
+  // Tool drawer for messages
+  --chatToolDrawerSize: 40px;
+  --chatToolDrawerColor: var(--BgColorSidebarLight);
+  
+  /* Sizes */
+  --sidebarTop: 0px;
+  --sidebarWidth: max(300px, 20%);
+  --mainContentWidth: calc(100% - var(--sidebarWidth));
+  
+  --sectionPaddingTop: 0px;
+
+  --chatContentPaddingTop: 20px;
+  --chatContentPaddingRight: 40px;
+  --chatContentPaddingBottom: 110px;
+  --chatContentPaddingLeft: 40px;
+  --runningTotalLineHeight: 28px;
+  
+  --chatInputPaddingTop: 0px;
+  --chatInputPaddingRight: 60px;
+  --chatInputPaddingBottom: 10px;
+  --chatInputPaddingLeft: 60px;
+
+  --BgColor: var(--BgColorLight);
+  --running-totals: 0;
+}
+
+.navbar {
+  display: none !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    --thumbBG: #3f3f3f; /* scrollbar color dark */
+    --BgColor: var(--BgColorDark);
+    --chatToolDrawerColor: var(--BgColorSidebarDark);
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  html {
+    --sidebarWidth: max(250px, 20%);
+ 
+    --chatContentPaddingTop: 50px;
+    --chatContentPaddingRight: 20px;
+    --chatContentPaddingLeft: 20px;
+    
+    --chatInputPaddingRight: 30px;
+    --chatInputPaddingLeft: 30px;
+  }
+  
+}
+
+@media screen and (min-width: 1024px) {
+  .modal-card.wide {
+    width: 960px !important;
+  }
+}
+
+@media only screen and (max-width: 900px) and (min-width: 769px) {
+  .chat-menu-item .chat-icon {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .navbar {
+    display: block !important;
+  }
+  .main-menu {
+    z-index: 50;
+  }
+  html {
+    --BgColorSidebarLight: hsl(210, 12%, 97%);
+    // --BgColorSidebarDark: rgb(22, 24, 30);
+    --sidebarWidth: max(300px, 20%);
+    --mainContentWidth: calc(100%);
+    --sidebarTop: 56px;
+    --sectionPaddingTop: 56px;
+    --chatInputPaddingRight: 20px;
+    --chatInputPaddingLeft: 20px;
+  }
+  .main-menu .menu-nav-bar {
+    display: none;
+  }
+  .main-menu .level-right {
+    display: flex;
+  }
+  .main-menu .level-item {
+    margin-bottom: inherit !important;
+  }
+}
+

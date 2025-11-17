@@ -1,0 +1,275 @@
+/* Loading chat messages */
+.is-loading {
+  opacity: 0.5;
+  @include loader;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-width: 0.25em;
+  display: inline-block;
+}
+
+/* Support for fullwidth dropdowns, see https://github.com/jgthms/bulma/issues/2055 */
+.dropdown.is-fullwidth {
+  display: flex;
+
+  .dropdown-trigger, .dropdown-menu {
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   Dropdowns & typeahead overrides
+   ========================================================================== */
+
+[data-svelte-typeahead] {
+  display: flex;
+  background-color: transparent !important;
+  
+  &[aria-expanded="true"] {
+    z-index: 3;
+
+    ul.svelte-typeahead-list {
+      @extend .dropdown-content;
+      max-height: 60vh;
+      overflow: auto;
+  
+      > li {
+        padding: 0;
+        border-bottom: 0 none;
+
+        &.selected {
+          @media (prefers-color-scheme: dark) {
+            background-color: #2a2a2a;
+          }
+        }
+      }
+    }
+  }
+
+  [data-svelte-search] {
+    flex: 1;
+  
+    input {
+      @extend .button;
+      @extend .default-text;
+      text-align: center;
+  
+      &::placeholder {
+        @extend .default-text;
+      }
+    }
+  }
+}
+
+/* Bulma layout hacks */
+
+.chat-option-menu.navbar-item {
+  margin-left: auto;
+}
+
+/* temp. fix to keep navbar from getting huge on small screen devices 
+    if the right menu is put in the proper navbar-end container */
+.navbar-brand {
+  /* margin-right: 0; */
+  width: 100%;
+}
+
+.dropdown-item .menu-icon {
+  padding-right: .5em;
+}
+.dropdown-menu .dropdown-content {
+  max-height: calc(100vh - 60px);
+  overflow-y: auto;
+}
+.modal-card .dropdown-menu .dropdown-content {
+  max-height: calc(100vh - 80px);
+}
+.modal-card {
+  overflow: visible;
+}
+
+@media only screen and (max-width: 768px) {
+  .main-menu .dropdown-menu .dropdown-content {
+    max-height: calc(100vh - 112px);
+  }
+  .main-menu {
+    display: none;
+  }
+  .main-menu.pinned {
+    display: block;
+  }
+}
+
+.chat-menu-item {
+  position: relative;
+}
+.chat-menu-item .chat-item-name {
+  display: block;
+  white-space:nowrap;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 75%, rgba(0,0,0,0));
+  mask-image: linear-gradient(to right, rgba(0,0,0,1) 75%, rgba(0,0,0,0));
+}
+.chat-menu-item .delete-button {
+  position: absolute;
+  right: .4em;
+  z-index: 200;
+}
+
+.chat-menu-item .edit-button {
+  position: absolute;
+  right: 2em;
+  z-index: 200;
+}
+
+.chat-name-editor {
+  margin: .5em;
+  padding:.1em;
+}
+
+/* Overrides for main layout  */
+
+.side-bar-column {
+  width: var(--sidebarWidth);
+}
+
+.main-content-column {
+  margin-left: auto;
+  margin-right: 0px;
+  width: var(--mainContentWidth);
+  padding-top: var(--sectionPaddingTop);
+  position: relative;
+}
+
+aside.menu.main-menu {
+  z-index:50;
+  position: fixed;
+  width: var(--sidebarWidth);
+  padding-right: 20px;
+  top: var(--sidebarTop);
+  bottom:0px;
+}
+
+aside.menu.main-menu .menu-expanse {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  background-color: var(--BgColorSidebarLight); 
+  box-shadow: 5px 0px 0px var(--BgColorSidebarLight);
+}
+
+.menu-expanse .menu-label,
+.menu-expanse .menu-list,
+.menu-expanse .bottom-buttons {
+  flex: 0 1 auto;
+}
+
+.menu-expanse .menu-expansion-list {
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
+
+.default-text {
+  color: hsl(0, 0%, 21%) !important;
+}
+
+.lower-mask, .lower-mask2 {
+  z-index: 1;
+  display: block;
+  position: fixed;
+  bottom: 0px;
+  height: calc(var(--chatContentPaddingBottom) + var(--runningTotalLineHeight) * var(--running-totals));
+  width: 100%;
+  background-image: linear-gradient(180deg,hsla(0,0%,100%,0) 13.94%, var(--BgColorLight) 54.73%);
+}
+
+.lower-mask2 {
+  display: none;
+}
+
+.lower-mask2.strong-mask {
+  display: block;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  .default-text {
+    color: rgb(181, 181, 181) !important;
+  }
+  .lower-mask, .lower-mask2 {
+    background-image: linear-gradient(180deg,hsla(0,0%,100%,0) 13.94%, var(--BgColorDark) 54.73%);
+  }
+  aside.menu.main-menu .menu-expanse {
+    background-color: var(--BgColorSidebarDark); 
+    box-shadow: 5px 0px 0px var(--BgColorSidebarDark);
+  }
+}
+
+
+*::-webkit-scrollbar {
+  width: 11px;
+}
+*::-webkit-scrollbar-track {
+  background: var(--scrollbarBG);
+}
+*::-webkit-scrollbar-thumb {
+  background-color: var(--thumbBG) ;
+  border-radius: 6px;
+  border: 3px solid var(--scrollbarBG);
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+
+.chat-content {
+  padding: 
+    var(--chatContentPaddingTop) 
+    var(--chatContentPaddingRight)
+    calc(var(--chatContentPaddingBottom) + var(--runningTotalLineHeight) * var(--running-totals))
+    var(--chatContentPaddingLeft) ;
+}
+
+.section:has(+ .pin-footer) {
+  padding-bottom: var(--chatContentPaddingBottom);
+}
+
+.pin-footer {
+  z-index:2;
+  position: fixed;
+  bottom: 0px;
+  width: var(--mainContentWidth);
+}
+
+.prompt-input-container {
+  z-index:2;
+  position: fixed;
+  bottom: 0px;
+  width: var(--mainContentWidth);
+  
+  padding: 
+    var(--chatInputPaddingTop) 
+    var(--chatInputPaddingRight)
+    var(--chatInputPaddingBottom)
+    var(--chatInputPaddingLeft);
+
+  .control.send .button {
+    width: 60px;
+  }
+  textarea {
+    max-height: calc(100vh - (var(--chatContentPaddingBottom) + var(--runningTotalLineHeight) * var(--running-totals))) !important;
+    min-height: 38px !important;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .prompt-input-container {
+    .control.send .button {
+      width: auto;
+    }
+    .control.settings {
+      display: none;
+    }
+  }
+}
+
