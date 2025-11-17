@@ -20,6 +20,11 @@ export interface ChatImage {
     chats: number[];
   }
 
+export type MessageHistoryEntry = {
+    content: string;
+    editedAt: number;
+  };
+
 export type Message = {
     role: 'user' | 'assistant' | 'system' | 'error' | 'image';
     content: string;
@@ -36,6 +41,7 @@ export type Message = {
     created?: number;
     skipOnce?: boolean;
     appendOnce?: string[];
+    history?: MessageHistoryEntry[];
   };
 
 export type ResponseAlteration = {

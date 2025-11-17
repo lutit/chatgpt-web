@@ -4,9 +4,9 @@
   import { deleteMessage, deleteSummaryMessage, truncateFromMessage, submitExitingPromptsNow, continueMessage, updateMessages } from './Storage.svelte'
   import { getPrice } from './Stats.svelte'
   import SvelteMarkdown from 'svelte-markdown'
-  import type { Message, Model, Chat } from './Types.svelte'
+  import type { Message, Model, Chat, MessageHistoryEntry } from './Types.svelte'
   import Fa from 'svelte-fa/src/fa.svelte'
-  import { faTrash, faDiagramPredecessor, faDiagramNext, faCircleCheck, faPaperPlane, faEye, faEyeSlash, faEllipsis, faDownload, faClipboard } from '@fortawesome/free-solid-svg-icons/index'
+  import { faTrash, faDiagramPredecessor, faDiagramNext, faCircleCheck, faPaperPlane, faEye, faEyeSlash, faEllipsis, faDownload, faClipboard, faRotateLeft } from '@fortawesome/free-solid-svg-icons/index'
   import { errorNotice, scrollToMessage } from './Util.svelte'
   import { openModal } from 'svelte-modals'
   import PromptConfirm from './PromptConfirm.svelte'
@@ -48,6 +48,7 @@
   let imageUrl:string
   let refreshCounter = 0
   let displayMessage = message.content
+  let showHistory = false
 
   onMount(() => {
     defaultModel = chatSettings.model
@@ -95,6 +96,14 @@
   }
 
   const exit = () => {
+    if (chatSettings?.sandboxMode && message.content !== original) {
+      const entry: MessageHistoryEntry = {
+        content: original,
+        editedAt: Date.now()
+      }
+      if (!message.history) message.history = []
+      message.history.push(entry)
+    }
     doChange()
     editing = false
   }
@@ -215,6 +224,20 @@
     document.body.removeChild(a)
   }
 
+  const restoreHistory = (entry: MessageHistoryEntry) => {
+    if (!chatSettings?.sandboxMode) return
+    if (!message.history) message.history = []
+    if (message.content && message.content !== entry.content) {
+      message.history.push({
+        content: message.content,
+        editedAt: Date.now()
+      })
+    }
+    message.content = entry.content
+    updateMessages(chatId)
+    dispatch('change', message)
+  }
+
 </script>
 
 <article
@@ -263,6 +286,26 @@
           <img src={imageUrl} alt="">
         {/if}
     </div>
+    {/if}
+    {#if chatSettings?.sandboxMode && message.history && message.history.length && showHistory}
+      <div class="message-history">
+        <p class="is-size-7 message-note">History</p>
+        <ul class="message-history-list">
+          {#each [...message.history].reverse() as historyEntry, i}
+            <li class="message-history-entry">
+              <button
+                class="button is-small"
+                on:click|preventDefault={() => restoreHistory(historyEntry)}
+              >
+                Restore version {message.history.length - i}
+              </button>
+              <div class="message-history-preview">
+                {historyEntry.content}
+              </div>
+            </li>
+          {/each}
+        </ul>
+      </div>
     {/if}
   </div>
   {#if chatSettings?.sandboxMode}
@@ -363,6 +406,18 @@
           }}
         >
         <span class="icon"><Fa icon={faClipboard} /></span>
+        </a>
+      {/if}
+      {#if !isImage && chatSettings?.sandboxMode && message.history && message.history.length}
+        <a
+          href={'#'}
+          title="Toggle message edit history"
+          class="msg-history button is-small"
+          on:click|preventDefault={() => {
+            showHistory = !showHistory
+          }}
+        >
+        <span class="icon"><Fa icon={faRotateLeft} /></span>
         </a>
       {/if}
       {#if imageUrl}
