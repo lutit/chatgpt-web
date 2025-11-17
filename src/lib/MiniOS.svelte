@@ -5,7 +5,6 @@
 
 <script lang="ts">
   import { onDestroy, onMount } from 'svelte'
-  import { miniOSVisible } from './MiniOS.svelte'
   import { tweaksVisible } from './Tweaks.svelte'
   import { openChatWindow } from './ChatWindows.svelte'
   import { lastChatId, chatsStorage } from './Storage.svelte'
@@ -92,4 +91,3 @@
     </div>
   </div>
 {/if}
-

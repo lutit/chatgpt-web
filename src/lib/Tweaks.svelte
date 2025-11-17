@@ -72,7 +72,8 @@
     floatingSidebar: false,
     glassChat: false,
     gradientHeader: false,
-    archInstallEmulator: false
+    archInstallEmulator: false,
+    fireworksOnSend: false
   }
 
   export const tweaksStorage = persisted<TweaksState>('tweaks', defaultTweaks)

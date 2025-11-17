@@ -243,6 +243,7 @@ export type TweaksState = {
     glassChat: boolean;
     gradientHeader: boolean;
     archInstallEmulator: boolean;
+    fireworksOnSend: boolean;
   };
 
   type SettingNumber = {

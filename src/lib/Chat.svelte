@@ -41,6 +41,7 @@
   import PromptInput from './PromptInput.svelte'
   import { ChatRequest } from './ChatRequest.svelte'
   import { getModelDetail } from './Models.svelte'
+  import { triggerFireworks } from './Fireworks.svelte'
   import { handlePrankEffectsForMessage } from './Tweaks.svelte'
 
   export let params = { chatId: '' }
@@ -231,6 +232,7 @@
         // Compose the input message
         const inputMessage: Message = { role: 'user', content: input.value, uuid: uuidv4() }
         addMessage(chatId, inputMessage)
+        triggerFireworks()
       } else if (!fillMessage && $currentChatMessages.length &&
         $currentChatMessages[$currentChatMessages.length - 1].role === 'assistant') {
         fillMessage = $currentChatMessages[$currentChatMessages.length - 1]
