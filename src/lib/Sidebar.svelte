@@ -3,13 +3,14 @@
   import ChatMenuItem from './ChatMenuItem.svelte'
   import { chatsStorage, pinMainMenu, checkStateChange, getChatSortOption, setChatSortOption } from './Storage.svelte'
   import Fa from 'svelte-fa/src/fa.svelte'
-  import { faSquarePlus, faKey } from '@fortawesome/free-solid-svg-icons/index'
+  import { faSquarePlus, faKey, faFlask } from '@fortawesome/free-solid-svg-icons/index'
   import ChatOptionMenu from './ChatOptionMenu.svelte'
   import logo from '../assets/logo.svg'
   import { clickOutside } from 'svelte-use-click-outside'
   import { startNewChatWithWarning } from './Util.svelte'
   import { chatSortOptions } from './Settings.svelte'
   import { hasActiveModels } from './Models.svelte'
+  import { tweaksVisible } from './Tweaks.svelte'
 
   $: sortedChats = $chatsStorage.sort(getChatSortOption().sortFn)
   $: activeChatId = $params && $params.chatId ? parseInt($params.chatId) : undefined
@@ -56,6 +57,15 @@
     <!-- <p class="menu-label">Actions</p> -->
     <div class="level is-mobile bottom-buttons p-1">
       <div class="level-left">
+        <div class="level-item">
+          <button
+            class="button"
+            title="Open Tweaks Lab"
+            on:click|preventDefault={() => { $tweaksVisible = true }}
+          >
+            <span class="icon"><Fa icon={faFlask} /></span>
+          </button>
+        </div>
         <div class="dropdown is-left is-up" class:is-active={showSortMenu} use:clickOutside={() => { showSortMenu = false }}>
           <div class="dropdown-trigger">
             <button class="button" aria-haspopup="true" aria-controls="dropdown-menu3" on:click|preventDefault|stopPropagation={() => { showSortMenu = !showSortMenu }}>
