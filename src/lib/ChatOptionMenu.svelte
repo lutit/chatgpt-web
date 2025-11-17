@@ -15,7 +15,8 @@
     faFileExport,
     faTrashCan,
     faEye,
-    faEyeSlash
+    faEyeSlash,
+    faWindowMaximize
   } from '@fortawesome/free-solid-svg-icons/index'
   import { faSquareMinus, faSquarePlus as faSquarePlusOutline } from '@fortawesome/free-regular-svg-icons/index'
   import { addChatFromJSON, chatsStorage, checkStateChange, clearChats, clearMessages, copyChat, globalStorage, setGlobalSettingValueByKey, showSetChatSettings, pinMainMenu, getChat, deleteChat, saveChatStore, saveCustomProfile } from './Storage.svelte'
@@ -27,6 +28,7 @@
   import PromptConfirm from './PromptConfirm.svelte'
   import { startNewChatWithWarning, startNewChatFromChatId, errorNotice, encodeHTMLEntities } from './Util.svelte'
   import type { ChatSettings } from './Types.svelte'
+  import { openChatWindow } from './ChatWindows.svelte'
   import { hasActiveModels } from './Models.svelte'
 
   export let chatId
@@ -198,6 +200,9 @@
       </a>
       <a href={'#'} class="dropdown-item" class:is-disabled={!chatId} on:click|preventDefault={() => { if (chatId) close(); copyChat(chatId) }}>
         <span class="menu-icon"><Fa icon={faClone}/></span> Clone Chat
+      </a>
+      <a href={'#'} class="dropdown-item" class:is-disabled={!chatId} on:click|preventDefault={() => { if (chatId) { close(); openChatWindow(chatId) } }}>
+        <span class="menu-icon"><Fa icon={faWindowMaximize}/></span> Open Chat Window
       </a>
       <hr class="dropdown-divider">
       <a href={'#'} class="dropdown-item" class:is-disabled={!chatId} on:click|preventDefault={async () => { if (chatId) await restartChatSession() }}>

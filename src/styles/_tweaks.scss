@@ -67,6 +67,23 @@
     0 0 0 6px rgba(45, 212, 191, 0.12);
 }
 
+.window-style-picker {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  opacity: 0.9;
+}
+
+.window-style-picker select {
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  color: #e5e7eb;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.75rem;
+}
+
 .tweaks-panel-body {
   flex: 1 1 auto;
   overflow-y: auto;
@@ -701,4 +718,144 @@ html.tweak-glitchAssistantText .assistant-message .message-body {
   .arch-install-overlay {
     padding: 0.8rem;
   }
+}
+
+/* ==========================================================================
+   Floating chat windows (non-tweak feature, styled by windowStyle)
+   ========================================================================== */
+
+.chat-window-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 65;
+}
+
+.chat-window {
+  position: absolute;
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  background: #020617;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(15, 23, 42, 0.9),
+    0 26px 70px rgba(0, 0, 0, 0.95);
+}
+
+.chat-window-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.7rem;
+  cursor: move;
+  user-select: none;
+}
+
+.chat-window-body {
+  flex: 1 1 auto;
+  background-color: rgba(15, 23, 42, 0.98);
+  overflow: hidden;
+  display: flex;
+}
+
+.chat-window-body > :global(*) {
+  flex: 1 1 auto;
+}
+
+.chat-window.is-minimized .chat-window-body {
+  display: none;
+}
+
+.chat-window .window-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.chat-window .window-controls button {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 999px;
+  border: none;
+  padding: 0;
+}
+
+.chat-window .window-title {
+  margin-left: 0.6rem;
+  font-size: 0.75rem;
+  opacity: 0.85;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* macOS-style window */
+.chat-window.style-macos .chat-window-header {
+  background: linear-gradient(90deg, #020617, #0f172a);
+}
+
+.chat-window.style-macos .window-controls .close {
+  background: #ef4444;
+}
+
+.chat-window.style-macos .window-controls .minimize {
+  background: #eab308;
+}
+
+.chat-window.style-macos .window-controls .maximize {
+  background: #22c55e;
+}
+
+/* Windows-style window */
+.chat-window.style-windows {
+  border-radius: 0.4rem;
+}
+
+.chat-window.style-windows .chat-window-header {
+  background: linear-gradient(90deg, #0f172a, #1d4ed8);
+}
+
+.chat-window.style-windows .window-controls button {
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 0.2rem;
+  background: rgba(15, 23, 42, 0.85);
+}
+
+.chat-window.style-windows .window-controls .close {
+  background: #b91c1c;
+}
+
+.chat-window.style-windows .window-controls .minimize {
+  background: rgba(15, 23, 42, 0.85);
+}
+
+.chat-window.style-windows .window-controls .maximize {
+  background: rgba(15, 23, 42, 0.85);
+}
+
+/* Qt-style window */
+.chat-window.style-qt .chat-window-header {
+  background: linear-gradient(90deg, #020617, #0369a1);
+}
+
+.chat-window.style-qt .window-controls button {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 0.2rem;
+  background: #0f172a;
+}
+
+.chat-window.style-qt .window-controls .close {
+  background: #f97316;
+}
+
+.chat-window.style-qt .window-controls .minimize {
+  background: #e5e7eb;
+}
+
+.chat-window.style-qt .window-controls .maximize {
+  background: #22c55e;
 }

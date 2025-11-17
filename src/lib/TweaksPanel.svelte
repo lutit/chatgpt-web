@@ -7,9 +7,11 @@
     faBolt,
     faWandMagicSparkles,
     faGaugeHigh,
-    faBug
+    faBug,
+    faWindowMaximize
   } from '@fortawesome/free-solid-svg-icons/index'
   import { tweaksStorage, tweaksVisible } from './Tweaks.svelte'
+  import { windowStyle } from './ChatWindows.svelte'
   import type { TweaksState } from './Types.svelte'
 
   type TweakKey = keyof TweaksState
@@ -165,6 +167,16 @@
           <h2>Chat Tweaks Lab</h2>
           <p>Live‑tune layout, themes, sandbox behaviour and fun experiments.</p>
         </div>
+      </div>
+      <div class="window-style-picker">
+        <span class="icon"><Fa icon={faWindowMaximize} /></span>
+        <label>
+          <select bind:value={$windowStyle}>
+            <option value="windows">Windows</option>
+            <option value="macos">macOS</option>
+            <option value="qt">Qt</option>
+          </select>
+        </label>
       </div>
       <button class="button is-small close-button" on:click={() => tweaksVisible.set(false)} aria-label="Close tweaks lab">
         <span class="icon"><Fa icon={faXmark} /></span>
