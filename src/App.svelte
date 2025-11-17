@@ -12,6 +12,8 @@
   import { dispatchModalEsc, checkModalEsc } from './lib/Util.svelte'
   import { set as setOpenAI } from './lib/providers/openai/util.svelte'
   import { hasActiveModels } from './lib/Models.svelte'
+  import TweaksPanel from './lib/TweaksPanel.svelte'
+  import { tweaksApplied } from './lib/Tweaks.svelte'
 
   // Check if the API key is passed in as a "key" query parameter - if so, save it
   // Example: https://niek.github.io/chatgpt-web/#/?key=sk-...
@@ -51,6 +53,8 @@
   }
 
   $: onLocationChange($location)
+  // Subscribe to tweaks so they can apply classes on <html>
+  $: $tweaksApplied
 
 </script>
 
@@ -63,6 +67,8 @@
     <Router {routes} on:conditionsFailed={() => replace('/')}/>
   {/key}
 </div>
+
+<TweaksPanel />
 
 <Modals>
   <!-- svelte-ignore a11y-click-events-have-key-events -->

@@ -173,6 +173,66 @@ export type GlobalSettings = {
     openAiEndpoint: string;
   };
 
+export type TweaksState = {
+    compactMessages: boolean;
+    superCompactMessages: boolean;
+    extraWideMessages: boolean;
+    alignUserRight: boolean;
+    bubbleShadowStrong: boolean;
+    bubbleShadowSoft: boolean;
+    roundedMessages: boolean;
+    squareMessages: boolean;
+
+    highContrastTheme: boolean;
+    neonTheme: boolean;
+    matrixTheme: boolean;
+    sunsetTheme: boolean;
+    desaturatedTheme: boolean;
+    tintedUserMessages: boolean;
+    tintedAssistantMessages: boolean;
+    invertedMessages: boolean;
+    backgroundGrid: boolean;
+    backgroundNoise: boolean;
+
+    floatMessages: boolean;
+    pulseNewMessages: boolean;
+    slideInMessages: boolean;
+    wobbleMessages: boolean;
+    glowOnHover: boolean;
+    slowTransitions: boolean;
+    ultraFastTransitions: boolean;
+    reduceMotion: boolean;
+    parallaxBackground: boolean;
+
+    highlightEditableMessages: boolean;
+    showHistoryPreviewInline: boolean;
+    showHistoryCountBadge: boolean;
+    autoOpenHistoryOnEdit: boolean;
+    confirmBeforeRestoreHistory: boolean;
+    lockSystemMessages: boolean;
+    lockErrorMessages: boolean;
+    emphasizeUserEdits: boolean;
+    showEditTimestamp: boolean;
+    showSandboxRibbon: boolean;
+
+    showTokenUsageInline: boolean;
+    showTokenUsageRight: boolean;
+    showModelBadgePerMessage: boolean;
+    debugLayoutBorders: boolean;
+    debugScrollAnchors: boolean;
+    showMessageUuid: boolean;
+    showMessageRoleBadge: boolean;
+    showMessageIndex: boolean;
+    showRunningTotalsBar: boolean;
+
+    rainbowUserMessages: boolean;
+    rainbowAssistantMessages: boolean;
+    asciiArtBackground: boolean;
+    snowOverlay: boolean;
+    spotlightActiveMessage: boolean;
+    discoMode: boolean;
+  };
+
   type SettingNumber = {
     type: 'number';
     min: number;

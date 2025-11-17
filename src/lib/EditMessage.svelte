@@ -16,6 +16,7 @@
   export let message:Message
   export let chatId:number
   export let chat:Chat
+  export let index:number = 0
 
   $: chatSettings = chat.settings
 
@@ -254,9 +255,14 @@
   class:editing={editing}
   class:streaming={message.streaming}
   class:incomplete={message.finish_reason === 'length'}
+  data-index={index + 1}
 >
   <div class="message-body content">
  
+    <div class="message-meta-row">
+      <span class="message-role-badge">{message.role}</span>
+      <span class="message-uuid">{message.uuid}</span>
+    </div>
     {#if editing}
       <form class="message-edit" on:submit|preventDefault={update} on:keydown={keydown}>
         <div id={'edit-' + message.uuid} class="message-editor" bind:innerText={message.content} contenteditable

@@ -201,6 +201,49 @@
   padding-top: .6em;
   margin-bottom: -0.6em;
 }
+.message-meta-row {
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.25rem;
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+.message-role-badge {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+.message-uuid {
+  display: none;
+  font-family: monospace;
+  font-size: 0.7rem;
+}
+.message-history {
+  margin-top: 0.75rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed rgba(148, 163, 184, 0.4);
+}
+.message-history-list {
+  max-height: 200px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.message-history-entry {
+  margin-bottom: 0.5rem;
+}
+.message-history-entry .button {
+  font-size: 0.75rem;
+  margin-bottom: 0.15rem;
+}
+.message-history-preview {
+  font-size: 0.8rem;
+  opacity: 0.8;
+  max-height: 4.5em;
+  overflow: hidden;
+}
 .message-history {
   margin-top: 0.75rem;
   padding-top: 0.5rem;

@@ -4,7 +4,8 @@
   import logo from '../assets/logo.svg'
   import ChatOptionMenu from './ChatOptionMenu.svelte'
   import Fa from 'svelte-fa/src/fa.svelte'
-  import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons/index'
+  import { faBars, faXmark, faFlask } from '@fortawesome/free-solid-svg-icons/index'
+  import { tweaksVisible } from './Tweaks.svelte'
 
 $: activeChatId = $params && $params.chatId ? parseInt($params.chatId) : undefined
 </script>
@@ -32,6 +33,11 @@ $: activeChatId = $params && $params.chatId ? parseInt($params.chatId) : undefin
       <p class="ml-2 is-size-6 has-text-weight-bold">ChatGPT-web</p>
     </a>
     <div class="chat-option-menu navbar-item is-pulled-right">
+      <button class="button is-ghost default-text" title="Open Tweaks Lab" on:click|preventDefault={() => { $tweaksVisible = true }}>
+        <span class="icon">
+          <Fa icon={faFlask} />
+        </span>
+      </button>
       <ChatOptionMenu bind:chatId={activeChatId} />
     </div>
   </div>
