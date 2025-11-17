@@ -232,6 +232,16 @@ export type TweaksState = {
     spotlightActiveMessage: boolean;
     discoMode: boolean;
     blackoutOverlay: boolean;
+    glitchAssistantText: boolean;
+    tiltMessages: boolean;
+    zebraChat: boolean;
+    breathingInput: boolean;
+    rainbowScrollbars: boolean;
+    haloUserMessages: boolean;
+    haloAssistantMessages: boolean;
+    floatingSidebar: boolean;
+    glassChat: boolean;
+    gradientHeader: boolean;
   };
 
   type SettingNumber = {

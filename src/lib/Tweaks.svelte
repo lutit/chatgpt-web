@@ -61,7 +61,17 @@
     snowOverlay: false,
     spotlightActiveMessage: false,
     discoMode: false,
-    blackoutOverlay: false
+    blackoutOverlay: false,
+    glitchAssistantText: false,
+    tiltMessages: false,
+    zebraChat: false,
+    breathingInput: false,
+    rainbowScrollbars: false,
+    haloUserMessages: false,
+    haloAssistantMessages: false,
+    floatingSidebar: false,
+    glassChat: false,
+    gradientHeader: false
   }
 
   export const tweaksStorage = persisted<TweaksState>('tweaks', defaultTweaks)

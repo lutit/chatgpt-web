@@ -44,7 +44,9 @@
         { key: 'roundedMessages', label: 'Rounded bubbles', description: 'Make all messages fully pill‑shaped.' },
         { key: 'squareMessages', label: 'Square bubbles', description: 'Remove rounding for a terminal‑like look.' },
         { key: 'backgroundGrid', label: 'Subtle grid background', description: 'Add a faint grid under the conversation.' },
-        { key: 'backgroundNoise', label: 'Paper noise texture', description: 'Overlay a subtle noise pattern on the app.' }
+        { key: 'backgroundNoise', label: 'Paper noise texture', description: 'Overlay a subtle noise pattern on the app.' },
+        { key: 'zebraChat', label: 'Zebra chat rows', description: 'Alternate faint stripes behind each message row.' },
+        { key: 'floatingSidebar', label: 'Floating sidebar', description: 'Give the sidebar extra depth and motion.' }
       ]
     },
     {
@@ -62,7 +64,9 @@
         { key: 'tintedAssistantMessages', label: 'Tint assistant messages', description: 'Give assistant replies a soft highlight.' },
         { key: 'invertedMessages', label: 'Invert bubbles', description: 'Swap light/dark contrast inside message cards.' },
         { key: 'asciiArtBackground', label: 'ASCII backdrop', description: 'Overlay faint ASCII art texture behind content.' },
-        { key: 'discoMode', label: 'Disco gradients', description: 'Cycle subtle background gradients over time.' }
+        { key: 'discoMode', label: 'Disco gradients', description: 'Cycle subtle background gradients over time.' },
+        { key: 'glassChat', label: 'Glassmorphism chat', description: 'Turn message bubbles into frosted glass.' },
+        { key: 'gradientHeader', label: 'Gradient chat header', description: 'Give the chat header a neon gradient bar.' }
       ]
     },
     {
@@ -79,7 +83,8 @@
         { key: 'slowTransitions', label: 'Slow transitions', description: 'Stretch layout transitions for a cinematic feel.' },
         { key: 'ultraFastTransitions', label: 'Ultra‑fast transitions', description: 'Snap everything instantly, no easing.' },
         { key: 'reduceMotion', label: 'Reduce motion', description: 'Tone down non‑essential animations overall.' },
-        { key: 'parallaxBackground', label: 'Parallax background', description: 'Add a subtle parallax drift to the backdrop.' }
+        { key: 'parallaxBackground', label: 'Parallax background', description: 'Add a subtle parallax drift to the backdrop.' },
+        { key: 'tiltMessages', label: 'Tilted message stack', description: 'Slightly tilt alternating messages for a scrapbook feel.' }
       ]
     },
     {
@@ -128,7 +133,12 @@
         { key: 'snowOverlay', label: 'Snow overlay', description: 'Add a soft falling snow particle overlay.' },
         { key: 'spotlightActiveMessage', label: 'Spotlight active message', description: 'Dim others when you hover a single bubble.' },
         { key: 'asciiArtBackground', label: 'ASCII noise overlay', description: 'Overlay faint ASCII patterns behind content.' },
-        { key: 'discoMode', label: 'Disco stripe mode', description: 'Give the app a constantly shifting stripe glow.' }
+        { key: 'discoMode', label: 'Disco stripe mode', description: 'Give the app a constantly shifting stripe glow.' },
+        { key: 'glitchAssistantText', label: 'Glitchy assistant text', description: 'Make assistant replies subtly glitch and jitter.' },
+        { key: 'breathingInput', label: 'Breathing input bar', description: 'Gently pulse the input bar while idle.' },
+        { key: 'rainbowScrollbars', label: 'Rainbow scrollbars', description: 'Give scrollbars a bright gradient thumb.' },
+        { key: 'haloUserMessages', label: 'Halo user messages', description: 'Add a glow halo behind your own messages.' },
+        { key: 'haloAssistantMessages', label: 'Halo assistant messages', description: 'Add a glow halo behind assistant replies.' }
       ]
     }
   ]
@@ -192,4 +202,3 @@
     </section>
   </aside>
 {/if}
-
