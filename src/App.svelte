@@ -16,6 +16,7 @@
   import { tweaksApplied } from './lib/Tweaks.svelte'
   import ArchInstallEmulator from './lib/ArchInstallEmulator.svelte'
   import ChatWindowsLayer from './lib/ChatWindowsLayer.svelte'
+  import MiniOS from './lib/MiniOS.svelte'
 
   // Check if the API key is passed in as a "key" query parameter - if so, save it
   // Example: https://niek.github.io/chatgpt-web/#/?key=sk-...
@@ -71,6 +72,7 @@
 </div>
 
 <TweaksPanel />
+<MiniOS />
 <ChatWindowsLayer />
 <ArchInstallEmulator />
 

@@ -3,7 +3,7 @@
   import ChatMenuItem from './ChatMenuItem.svelte'
   import { chatsStorage, pinMainMenu, checkStateChange, getChatSortOption, setChatSortOption } from './Storage.svelte'
   import Fa from 'svelte-fa/src/fa.svelte'
-  import { faSquarePlus, faKey, faFlask } from '@fortawesome/free-solid-svg-icons/index'
+  import { faSquarePlus, faKey, faFlask, faDesktop } from '@fortawesome/free-solid-svg-icons/index'
   import ChatOptionMenu from './ChatOptionMenu.svelte'
   import logo from '../assets/logo.svg'
   import { clickOutside } from 'svelte-use-click-outside'
@@ -11,6 +11,7 @@
   import { chatSortOptions } from './Settings.svelte'
   import { hasActiveModels } from './Models.svelte'
   import { tweaksVisible } from './Tweaks.svelte'
+  import { miniOSVisible } from './MiniOS.svelte'
 
   $: sortedChats = $chatsStorage.sort(getChatSortOption().sortFn)
   $: activeChatId = $params && $params.chatId ? parseInt($params.chatId) : undefined
@@ -64,6 +65,15 @@
             on:click|preventDefault={() => { $tweaksVisible = true }}
           >
             <span class="icon"><Fa icon={faFlask} /></span>
+          </button>
+        </div>
+        <div class="level-item">
+          <button
+            class="button"
+            title="Open MiniOS Desktop"
+            on:click|preventDefault={() => { $miniOSVisible = true }}
+          >
+            <span class="icon"><Fa icon={faDesktop} /></span>
           </button>
         </div>
         <div class="dropdown is-left is-up" class:is-active={showSortMenu} use:clickOutside={() => { showSortMenu = false }}>
