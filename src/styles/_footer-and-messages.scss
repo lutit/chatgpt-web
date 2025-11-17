@@ -2,6 +2,130 @@
    Footer, badges & misc layout helpers
    ========================================================================== */
 
+/* Main chat column */
+.chat-page {
+  min-height: 100vh;
+  background-color: var(--ChatBg);
+}
+
+.chat-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding:
+    var(--chatContentPaddingTop)
+    var(--chatContentPaddingRight)
+    calc(var(--chatContentPaddingBottom) + 1.5rem)
+    var(--chatContentPaddingLeft);
+}
+
+/* Footer / prompt input pinned to bottom, ChatGPT-style */
+.section-footer-mask {
+  pointer-events: none;
+}
+
+.section-footer {
+  position: fixed;
+  left: var(--sidebarWidth);
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  padding: 0.75rem 1rem 1.2rem;
+  background: transparent;
+  pointer-events: none;
+}
+
+.section-footer.pin-footer {
+  position: static;
+  padding-bottom: 0;
+}
+
+.section-footer .field {
+  pointer-events: auto;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 999px;
+  background-color: var(--InputContainerBg);
+  border: 1px solid var(--InputBorder);
+  box-shadow:
+    0 0 0 1px rgba(15, 23, 42, 0.03),
+    0 14px 35px rgba(15, 23, 42, 0.18);
+}
+
+.section-footer .control {
+  display: flex;
+  align-items: center;
+}
+
+.section-footer .control.is-expanded {
+  flex: 1 1 auto;
+}
+
+.section-footer textarea.chat-input {
+  width: 100%;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: inherit;
+}
+
+.section-footer textarea.chat-input:focus {
+  outline: none;
+}
+
+.section-footer .button {
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  color: #6b7280;
+  box-shadow: none;
+}
+
+.section-footer .button:hover {
+  background-color: rgba(148, 163, 184, 0.15);
+}
+
+.section-footer .button.is-disabled {
+  opacity: 0.4;
+}
+
+.section-footer .control.send .button {
+  background: var(--AccentGreen);
+  color: #ffffff;
+  box-shadow:
+    0 0 0 1px var(--AccentGreenSoft),
+    0 8px 18px rgba(16, 163, 127, 0.45);
+}
+
+.section-footer .control.send .button:hover {
+  background: #17b08a;
+}
+
+@media only screen and (max-width: 768px) {
+  .chat-content {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .section-footer {
+    left: 0;
+    padding-inline: 0.75rem;
+  }
+
+  .section-footer .field {
+    padding-inline: 0.75rem;
+  }
+}
+
 @media only screen and (max-width: 340px) {
   .section-footer {
     .author {
@@ -46,8 +170,29 @@
    Per-message layout, editing & tool drawer
    ========================================================================== */
 
+.chat-message.message {
+  position: relative;
+  transition: 0.25s;
+  background: transparent;
+  border-radius: 0;
+  border: 0 none;
+  box-shadow: none;
+}
+
 .message-body {
   z-index: 1;
+  border-radius: 1rem;
+  border: 1px solid var(--MessageBorder);
+  padding: 1rem 1.25rem;
+  line-height: 1.6;
+}
+
+.assistant-message > .message-body {
+  background-color: var(--AssistantMessageBg);
+}
+
+.user-message > .message-body {
+  background-color: var(--UserMessageBg);
 }
 .message-note {
   padding-top: .6em;
@@ -83,10 +228,6 @@
 .assistant-message .button-pack {    
   right: auto;
   left: -20px;
-}
-.chat-message.message {
-  position: relative;
-  transition: 0.3s;
 }
 
 // .chat-message.message:hover .button-pack, article.message:focus .button-pack {
@@ -231,4 +372,3 @@
 .modal.chat-settings .field-body {
   max-width: calc(100% - 40px);
 }
-

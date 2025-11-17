@@ -17,6 +17,7 @@
   flex-direction: column;
   flex-grow: 1;
   min-height: 100vh;
+  background-color: var(--ChatBg);
 }
 
 select option.is-default {
@@ -37,16 +38,12 @@ select option.is-default {
   filter: grayscale(100%);
 }
 
-.user-message {
-  max-width: 90%;
-  margin-right: 0;
-  margin-left: auto;
-  width: fit-content;
-}
-
+/* Chat messages follow a centered column like ChatGPT */
+.user-message,
 .assistant-message {
-  max-width: 90%;
-  width: fit-content;
+  max-width: 900px;
+  width: 100%;
+  margin: 0.1rem auto;
 }
 
 /* Swap the border on user messages to the other side */
@@ -60,6 +57,20 @@ select option.is-default {
   text-decoration: none !important;
 }
 
+/* Chat header pinned above messages, minimal chrome */
+.chat-header {
+  max-width: 900px;
+  margin: 0 auto 0.5rem;
+  padding: 0.75rem 0.5rem 0.75rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+@media (prefers-color-scheme: dark) {
+  .chat-header {
+    border-color: rgba(51, 65, 85, 0.9);
+  }
+}
+
 /* Style the chat input */
 .chat-input {
   overflow-y: hidden;
@@ -69,4 +80,3 @@ select option.is-default {
 // $footer-padding: 1.5rem 1.5rem;
 // $fullhd: 2000px;
 // $modal-content-width: 1000px;
-

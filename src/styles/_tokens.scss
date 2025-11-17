@@ -7,12 +7,41 @@ html {
   /* TODO: Update these to use bulma's scss variables, not css vars. */
   --scrollbarBG: transparent;
   --thumbBG: hsl(0, 0%, 60%); /* scollbar color light */
-  /* Back-ground */
+  /* Background */
   --BgColorDark: hsl(228, 10%, 10%);
   --BgColorLight: hsl(0, 0%, 100%);
   // --BgColorSidebarDark: rgb(28, 30, 36);
   --BgColorSidebarDark: rgb(16, 17, 22);
   --BgColorSidebarLight: hsla(0, 0%, 93%, 0.354);
+
+  /* Chat surface + messages (OpenAI-like) */
+  --ChatBgLight: #f4f4f5;
+  --ChatBgDark: #050816;
+  --ChatBg: var(--ChatBgLight);
+
+  --UserMessageBgLight: #ffffff;
+  --UserMessageBgDark: #0b1117;
+  --UserMessageBg: var(--UserMessageBgLight);
+
+  --AssistantMessageBgLight: #f7fafc;
+  --AssistantMessageBgDark: #131622;
+  --AssistantMessageBg: var(--AssistantMessageBgLight);
+
+  --MessageBorderLight: rgba(15, 23, 42, 0.06);
+  --MessageBorderDark: rgba(148, 163, 184, 0.35);
+  --MessageBorder: var(--MessageBorderLight);
+
+  --InputContainerBgLight: #ffffff;
+  --InputContainerBgDark: #050816;
+  --InputContainerBg: var(--InputContainerBgLight);
+
+  --InputBorderLight: rgba(15, 23, 42, 0.12);
+  --InputBorderDark: rgba(148, 163, 184, 0.45);
+  --InputBorder: var(--InputBorderLight);
+
+  --AccentGreen: #10a37f;
+  --AccentGreenSoft: rgba(16, 163, 127, 0.16);
+
   // Tool drawer for messages
   --chatToolDrawerSize: 40px;
   --chatToolDrawerColor: var(--BgColorSidebarLight);
@@ -48,6 +77,12 @@ html {
     --thumbBG: #3f3f3f; /* scrollbar color dark */
     --BgColor: var(--BgColorDark);
     --chatToolDrawerColor: var(--BgColorSidebarDark);
+    --ChatBg: var(--ChatBgDark);
+    --UserMessageBg: var(--UserMessageBgDark);
+    --AssistantMessageBg: var(--AssistantMessageBgDark);
+    --MessageBorder: var(--MessageBorderDark);
+    --InputContainerBg: var(--InputContainerBgDark);
+    --InputBorder: var(--InputBorderDark);
   }
 }
 
@@ -104,4 +139,3 @@ html {
     margin-bottom: inherit !important;
   }
 }
-

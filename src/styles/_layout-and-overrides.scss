@@ -180,7 +180,7 @@ aside.menu.main-menu .menu-expanse {
   bottom: 0px;
   height: calc(var(--chatContentPaddingBottom) + var(--runningTotalLineHeight) * var(--running-totals));
   width: 100%;
-  background-image: linear-gradient(180deg,hsla(0,0%,100%,0) 13.94%, var(--BgColorLight) 54.73%);
+  background-image: linear-gradient(180deg,hsla(0,0%,100%,0) 13.94%, var(--ChatBg) 54.73%);
 }
 
 .lower-mask2 {
@@ -197,7 +197,7 @@ aside.menu.main-menu .menu-expanse {
     color: rgb(181, 181, 181) !important;
   }
   .lower-mask, .lower-mask2 {
-    background-image: linear-gradient(180deg,hsla(0,0%,100%,0) 13.94%, var(--BgColorDark) 54.73%);
+    background-image: linear-gradient(180deg,hsla(0,0%,100%,0) 13.94%, var(--ChatBg) 54.73%);
   }
   aside.menu.main-menu .menu-expanse {
     background-color: var(--BgColorSidebarDark); 
@@ -272,4 +272,3 @@ aside.menu.main-menu .menu-expanse {
     }
   }
 }
-

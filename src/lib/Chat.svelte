@@ -442,14 +442,6 @@
     {/if}
   </form>
   <!-- a target to scroll to -->
-  <div class="content has-text-centered running-total-container">
-    {#each Object.entries(chat.usage || {}) as [model, usage]}
-    <p class="is-size-7 running-totals">
-      <em>{getModelDetail(model || '').label || model}</em> total <span class="has-text-weight-bold">{usage.total_tokens}</span>
-      tokens ~= <span class="has-text-weight-bold">${getPrice(usage, model).toFixed(6)}</span>
-    </p>
-    {/each}
-  </div>
 </Footer>
 </div>
 {/if}
