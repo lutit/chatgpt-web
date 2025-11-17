@@ -61,6 +61,8 @@ export type Request = {
 
 export type ChatSettings = {
     profile: string,
+    // When true, message editing / toolbox is enabled
+    sandboxMode?: boolean;
     characterName: string,
     profileName: string,
     profileDescription: string,

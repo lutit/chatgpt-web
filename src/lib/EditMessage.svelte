@@ -65,6 +65,7 @@
   })
 
   const edit = () => {
+    if (!chatSettings?.sandboxMode) return
     if (message.summarized || message.streaming || editing) return
     editing = true
     original = message.content
@@ -264,6 +265,7 @@
     </div>
     {/if}
   </div>
+  {#if chatSettings?.sandboxMode}
   <div class="tool-drawer-mask"></div>
   <div class="tool-drawer">
     <div class="button-pack">
@@ -378,4 +380,5 @@
       </div>
 
   </div>
+  {/if}
 </article>

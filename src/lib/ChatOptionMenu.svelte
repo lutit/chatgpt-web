@@ -36,6 +36,7 @@
   export let style: string = 'is-right'
 
   $: sortedChats = $chatsStorage.sort((a, b) => b.id - a.id)
+  $: currentChat = chatId ? getChat(chatId) : null
 
   let showChatMenu = false
   let chatFileInput
@@ -157,6 +158,16 @@
     reader.readAsText(image)
   }
 
+  const toggleSandboxMode = () => {
+    if (!chatId) return
+    const chat = getChat(chatId)
+    if (!chat) return
+    chat.settings.sandboxMode = !chat.settings.sandboxMode
+    saveChatStore()
+    $checkStateChange++
+    close()
+  }
+
 </script>
 
 <div class="dropdown {style}" class:is-active={showChatMenu} use:clickOutside={() => { showChatMenu = false }}>
@@ -192,6 +203,15 @@
       </a>
       <a href={'#'} class="dropdown-item" class:is-disabled={!chatId} on:click|preventDefault={() => { if (chatId) close(); clearUsage() }}>
         <span class="menu-icon"><Fa icon={faSquareMinus}/></span> Clear Chat Usage
+      </a>
+      <hr class="dropdown-divider">
+      <a href={'#'} class="dropdown-item" class:is-disabled={!chatId} on:click|preventDefault={toggleSandboxMode}>
+        <span class="menu-icon"><Fa icon={faEye}/></span>
+        {#if currentChat && currentChat.settings && currentChat.settings.sandboxMode}
+        Sandbox Mode: ON (editable)
+        {:else}
+        Sandbox Mode: OFF (locked)
+        {/if}
       </a>
       <hr class="dropdown-divider">
       <a href={'#'} class="dropdown-item" class:is-disabled={!chatId} on:click|preventDefault={() => { close(); exportChatAsJSON(chatId) }}>

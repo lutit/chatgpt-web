@@ -92,6 +92,7 @@ const gptDefaults = {
 const defaults:ChatSettings = {
   ...gptDefaults,
   profile: '',
+  sandboxMode: false,
   characterName: 'ChatGPT',
   profileName: '',
   profileDescription: '',

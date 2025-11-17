@@ -365,6 +365,9 @@
     <div class="level-item">
       <p class="subtitle is-5">
         <span>{chat.name || `Chat ${chat.id}`}</span>
+        {#if chatSettings?.sandboxMode}
+        <span class="tag is-warning ml-2">Sandbox</span>
+        {/if}
         <a href={'#'} class="greyscale ml-2 is-hidden has-text-weight-bold editbutton" title="Rename chat" on:click|preventDefault={promptRename}><Fa icon={faPenToSquare} /></a>
         <a href={'#'} class="greyscale ml-2 is-hidden has-text-weight-bold editbutton" title="Suggest a chat name" on:click|preventDefault={suggestName}><Fa icon={faLightbulb} /></a>
         <!-- <a href={'#'} class="greyscale ml-2 is-hidden has-text-weight-bold editbutton" title="Copy this chat" on:click|preventDefault={() => { copyChat(chatId) }}><Fa icon={faClone} /></a> -->
