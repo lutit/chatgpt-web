@@ -74,7 +74,7 @@ select option.is-default {
 /* Style the chat input */
 .chat-input {
   overflow-y: hidden;
-  resize: vertical;
+  resize: none;
 }
 
 // $footer-padding: 1.5rem 1.5rem;

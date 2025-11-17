@@ -414,17 +414,6 @@
         bind:this={input}
       />
     </p>
-    <p class="control mic" class:is-hidden={!recognition}>
-      <button class="button" class:is-disabled={chatRequest.updating} class:is-pulse={recording} on:click|preventDefault={recordToggle}
-        ><span class="icon"><Fa icon={faMicrophone} /></span></button
-      >
-    </p>
-    <p class="control settings">
-      <button title="Chat/Profile Settings" class="button" on:click|preventDefault={showSettingsModal}><span class="icon"><Fa icon={faGear} /></span></button>
-    </p>
-    <p class="control queue">
-      <button title="Queue message, don't send yet" class:is-disabled={chatRequest.updating} class="button is-ghost" on:click|preventDefault={addNewMessage}><span class="icon"><Fa icon={faArrowUpFromBracket} /></span></button>
-    </p>
     {#if chatRequest.updating}
     <p class="control send">
       <button title="Cancel Response" class="button is-danger" type="button" on:click={cancelRequest}><span class="icon">
