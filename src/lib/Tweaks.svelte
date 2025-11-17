@@ -71,7 +71,8 @@
     haloAssistantMessages: false,
     floatingSidebar: false,
     glassChat: false,
-    gradientHeader: false
+    gradientHeader: false,
+    archInstallEmulator: false
   }
 
   export const tweaksStorage = persisted<TweaksState>('tweaks', defaultTweaks)

@@ -14,6 +14,7 @@
   import { hasActiveModels } from './lib/Models.svelte'
   import TweaksPanel from './lib/TweaksPanel.svelte'
   import { tweaksApplied } from './lib/Tweaks.svelte'
+  import ArchInstallEmulator from './lib/ArchInstallEmulator.svelte'
 
   // Check if the API key is passed in as a "key" query parameter - if so, save it
   // Example: https://niek.github.io/chatgpt-web/#/?key=sk-...
@@ -69,6 +70,7 @@
 </div>
 
 <TweaksPanel />
+<ArchInstallEmulator />
 
 <Modals>
   <!-- svelte-ignore a11y-click-events-have-key-events -->

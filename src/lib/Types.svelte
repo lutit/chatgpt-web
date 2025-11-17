@@ -242,6 +242,7 @@ export type TweaksState = {
     floatingSidebar: boolean;
     glassChat: boolean;
     gradientHeader: boolean;
+    archInstallEmulator: boolean;
   };
 
   type SettingNumber = {

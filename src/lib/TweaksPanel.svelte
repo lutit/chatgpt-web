@@ -138,7 +138,8 @@
         { key: 'breathingInput', label: 'Breathing input bar', description: 'Gently pulse the input bar while idle.' },
         { key: 'rainbowScrollbars', label: 'Rainbow scrollbars', description: 'Give scrollbars a bright gradient thumb.' },
         { key: 'haloUserMessages', label: 'Halo user messages', description: 'Add a glow halo behind your own messages.' },
-        { key: 'haloAssistantMessages', label: 'Halo assistant messages', description: 'Add a glow halo behind assistant replies.' }
+        { key: 'haloAssistantMessages', label: 'Halo assistant messages', description: 'Add a glow halo behind assistant replies.' },
+        { key: 'archInstallEmulator', label: 'Arch Linux install emulator', description: 'Show a fake terminal that pretends to install Arch for a bit.' }
       ]
     }
   ]
